@@ -1,0 +1,61 @@
+C51 COMPILER V7.06   SQUAREWAVE                                                            05/22/2011 12:14:15 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE SQUAREWAVE
+OBJECT MODULE PLACED IN .\obj\Squarewave.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Squarewave.c BROWSE DEBUG OBJECTEXTEND PRINT(.\obj\Squarewave.lst) OBJECT(.
+                    -\obj\Squarewave.obj)
+
+stmt level    source
+
+   1          
+   2          #include<reg52.h>
+   3          sbit P20 = P2^0;
+   4          sbit P21 = P2^1;
+   5          sbit P35 = P3^5;
+   6          
+   7          sbit OUT=P1^2;    
+   8          
+   9          void Init_Timer0(void)
+  10          {
+  11   1       TMOD |= 0x01;    
+  12   1       EA=1;           
+  13   1       ET0=1;          
+  14   1       TR0=1;          
+  15   1      }
+  16          
+  17          main()
+  18          {
+  19   1              P1=0x00;
+  20   1              P20=0; 
+  21   1              P21=0; 
+  22   1              P35=0;
+  23   1              P1=0xFF;
+  24   1       
+  25   1       Init_Timer0();
+  26   1       while(1);
+  27   1      }
+  28          
+  29          
+  30          void Timer0_isr(void) interrupt 1 using 1
+  31          {
+  32   1       TH0=(65536-500)/256;           
+  33   1       TL0=(65536-500)*256;      //1ms Square Wave  
+  34   1                                    
+  35   1      
+  36   1       OUT=~OUT;       
+  37   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     36    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

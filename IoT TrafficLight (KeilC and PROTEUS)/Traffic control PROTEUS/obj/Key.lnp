@@ -1,0 +1,3 @@
+".\obj\main.obj" 
+TO ".\obj\Key" 
+PRINT(".\obj\Key.m51") RAMSIZE(256) 

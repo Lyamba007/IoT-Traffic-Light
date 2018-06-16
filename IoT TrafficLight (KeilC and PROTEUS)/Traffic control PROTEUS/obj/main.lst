@@ -1,0 +1,91 @@
+C51 COMPILER V9.02   MAIN                                                                  02/01/2018 01:38:34 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\obj\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\obj\main.lst) OBJECT(.\obj\main.ob
+                    -j)
+
+line level    source
+
+   1          #include<reg52.h> 
+   2          
+   3          sbit KEY=P3^3; 
+   4          sbit LED_RED=P1^0; 
+   5          sbit LED_YELLOW=P1^1; 
+   6          sbit LED_GREEN=P1^2; 
+   7          sbit LED_BLUE=P1^3; 
+   8          
+   9          
+  10          #define BLUE   3
+  11          #define GREEN  2
+  12          #define YELLOW 1
+  13          #define RED        0
+  14          
+  15          void Delay (unsigned int t)
+  16          {       
+  17   1              while (--t);
+  18   1      }
+  19          
+  20          
+  21          void main (void)
+  22          {
+  23   1      unsigned char state = RED;
+  24   1      
+  25   1              while (1)        
+  26   1                {
+  27   2                      switch(state)
+  28   2                      {
+  29   3                              case RED:                                               
+  30   3                                      LED_RED = 0;
+  31   3                                      LED_YELLOW = 1;
+  32   3                                      LED_GREEN = 1;
+  33   3                                      LED_BLUE = 1;
+  34   3                                      Delay (300);
+  35   3                                      state = YELLOW;
+  36   3                                      break; 
+  37   3                              case YELLOW:
+  38   3                                      LED_RED = 1;
+  39   3                                      LED_YELLOW = 0;
+  40   3                                      LED_GREEN = 1;
+  41   3                                      LED_BLUE = 1;
+  42   3                                      Delay (300);
+  43   3                                      state = BLUE;
+  44   3                                      break; 
+  45   3                              case GREEN:
+  46   3                                      LED_RED = 1;
+  47   3                                      LED_YELLOW = 1;
+  48   3                                      LED_GREEN = 0;
+  49   3                                      LED_BLUE = 1;
+  50   3                                      Delay (300);
+  51   3                                      state = BLUE;
+  52   3                                      break; 
+  53   3                              case BLUE:
+  54   3                                      LED_RED = 1;
+C51 COMPILER V9.02   MAIN                                                                  02/01/2018 01:38:34 PAGE 2   
+
+  55   3                                      LED_YELLOW = 1;
+  56   3                                      LED_GREEN = 1;
+  57   3                                      LED_BLUE = 0;
+  58   3                                      Delay (300);
+  59   3                                      state = RED;
+  60   3                                      break; 
+  61   3                              default:
+  62   3                                      break;
+  63   3                       }
+  64   2                }
+  65   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     81    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
